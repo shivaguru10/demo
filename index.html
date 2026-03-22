@@ -242,18 +242,18 @@
         <div class="share-form fadeInUpBig" style="width: 90%; max-width: 500px; padding: 20px; border-radius: 10px; position: relative;">
             <span class="close" id="enquiryModalClose" style="position: absolute; top: 10px; right: 20px; color: #555; font-size: 30px; cursor: pointer; z-index: 1000;">&times;</span>
             <h2 class="section-heading" style="text-align:center; padding-top: 10px;">ENQUIRY FORM</h2>
-            <form class="enquiry-form" novalidate="">
-                <input type="text" name="enquiryName" placeholder="Enter Full Name">
+            <form class="enquiry-form">
+                <input type="text" name="enquiryName" placeholder="Enter Full Name" required>
                 <div class="flex">
                     <div class="enquiry-phoneNumber">
-                        <input type="text" name="phoneNumber" placeholder="Enter Phone Number">
+                        <input type="tel" name="phoneNumber" placeholder="Enter Phone Number" pattern="\d{10}" maxlength="10" title="Phone number must be exactly 10 digits" oninput="this.value=this.value.replace(/[^0-9]/g,'');" required>
                     </div>
                     <div class="enquiry-email">
-                        <input type="text" name="email" placeholder="Enter Email">
+                        <input type="email" name="email" placeholder="Enter Email" required>
                     </div>
                 </div>
-                <textarea name="message" id="enquiryProductMessage" placeholder="Enter Message"></textarea>
-                <input type="submit" value="Send" onclick="sendEnquiry(this, 'info@creaatorschoice.in')">
+                <textarea name="message" id="enquiryProductMessage" placeholder="Enter Message" required></textarea>
+                <input type="submit" value="Send" onclick="if(this.form.checkValidity()){ sendWhatsAppEnquiry(this); } else { this.form.reportValidity(); } return false;">
             </form>
         </div>
     </div>
@@ -349,6 +349,23 @@
         } else {
             msgField.value = "";
         }
+    }
+
+    window.sendWhatsAppEnquiry = function(button) {
+        const form = button.form;
+        const name = form.querySelector('[name="enquiryName"]').value;
+        const phone = form.querySelector('[name="phoneNumber"]').value;
+        const email = form.querySelector('[name="email"]').value;
+        const message = form.querySelector('[name="message"]').value;
+        
+        const waNumber = "918667573511";
+        const text = `Hi, I have a new enquiry.\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Email:* ${email}\n*Message:* ${message}`;
+        
+        window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`, '_blank');
+        
+        const modal = document.getElementById("enquiryModal");
+        if (modal) modal.style.display = "none";
+        form.reset();
     }
 
     // Close modal logic
