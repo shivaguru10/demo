@@ -67,13 +67,14 @@
     <div id="section-photogallery"></div>
     <div id="section-videogallery"></div>
     <div id="section-feedback"></div>
+    <div id="section-location"></div>
     <div id="section-enquiry"></div>
 
 
     <!-- JavaScript to load sections dynamically -->
     <script>
         async function loadSections() {
-            const sections = ['home', 'aboutus', 'products-services', 'payment', 'photogallery', 'videogallery', 'feedback', 'enquiry'];
+            const sections = ['home', 'aboutus', 'products-services', 'payment', 'photogallery', 'videogallery', 'feedback', 'location', 'enquiry'];
             for (let sec of sections) {
                 try {
                     const res = await fetch(`sections/${sec}.html?v=` + new Date().getTime());
