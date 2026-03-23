@@ -5,20 +5,45 @@
         <div class="companylogo" style="margin: 0; line-height: 1;">
             <span
                 style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 28px; font-weight: 800; color: #3a3a3a; display: inline-block;">
-                Desi<span style="color: #e91e63;">gn</span>Guru
+                Creative<span style="color: #e91e63;">pluz</span>
             </span>
         </div>
         <div class="views"
             style="margin: 0; padding: 6px 12px; background-color: #e91e63; color: white; border-radius: 6px; font-size: 13px; font-weight: bold; border: none; float: none; display: inline-block;">
-            <i class="fa fa-eye"></i> Views: 100
+            <i class="fa fa-eye"></i> Views: <span id="viewCountDisplay">100</span>
         </div>
+        <script>
+            // Simulated Unique View Counter (Static Site Fallback)
+            document.addEventListener("DOMContentLoaded", function() {
+                const baseViews = 100;
+                let viewCount = localStorage.getItem('creativepluz_vbc_views');
+
+                if (!viewCount) {
+                    // New user -> Set to base + 1
+                    viewCount = baseViews + 1;
+                    localStorage.setItem('creativepluz_vbc_views', viewCount);
+                } else {
+                    viewCount = parseInt(viewCount);
+                    // Existing user -> Increment +1 only if it's a new session/entering the website today
+                    if (!sessionStorage.getItem('creativepluz_vbc_session')) {
+                        viewCount += 1;
+                        localStorage.setItem('creativepluz_vbc_views', viewCount);
+                    }
+                }
+
+                // Mark current session as active so refreshing doesn't keep adding views
+                sessionStorage.setItem('creativepluz_vbc_session', 'active');
+                
+                const displayEl = document.getElementById('viewCountDisplay');
+                if(displayEl) displayEl.innerText = viewCount;
+            });
+        </script>
     </div>
     <div class="clearfix"></div>
 
     <div class="headerbg"></div>
 
-    <div class="personface"><img src="images/logo.png"
-            class="img-responsive" alt="Logo"></div>
+    <div class="personface"><img src="images/logo.png" class="img-responsive" alt="Logo"></div>
 
     <div class="text-center">
 
@@ -27,31 +52,134 @@
             <span class="designation">Founder</span>
         </div>
 
-        <div class="companyname">DesignGuru</div>
+        <div class="companyname">Creativepluz</div>
 
         <div class="clearfix"></div>
 
-        <div class="contact-row"> <a class="contact-icon" href="tel:917620798265"> <i class="fa fa-phone"></i>
+        <style>
+            /* Square Logo Override */
+            .personface,
+            .personface img {
+                border-radius: 0 !important;
+            }
 
-                <!-- Call -->
+            /* ACTION BUTTONS CONTAINER */
+            .actions {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin: 25px 0;
+            }
 
-            </a> <a class="contact-icon" target="_blank"
-                href="https://wa.me/918667573511?text=Got%20reference%20from%20your%20Virtual%20Business%20Card.%20Want%20to%20know%20more%20about%20your%20products%20and%20services.">
-                <i class="fa fa-whatsapp"></i>
+            .actions a {
+                width: 48px;
+                height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                text-decoration: none;
+                font-size: 20px;
+            }
 
-                <!-- Whatsapp -->
+            .actions .call {
+                background: #ef5350;
+            }
 
-            </a> <a class="contact-icon" target="_blank" href="https://goo.gl/maps/wFFGBpKRDSPMWHtX6"> <i
-                    class="fa fa-map-marker"></i>
+            .actions .whatsapp {
+                background: #25d366;
+            }
 
-                <!-- Direction -->
+            .actions .location {
+                background: #3498db;
+            }
 
-            </a> <a class="contact-icon" target="_blank" href="mailto:info@creaatorschoice.in"> <i
-                    class="fa fa-envelope"></i>
+            .actions .mail {
+                background: #f39c12;
+            }
 
-                <!-- Mail -->
+            .actions .share-action {
+                background: #c2185b;
+            }
 
-            </a> </div>
+            @media (max-width: 480px) {
+                .actions a {
+                    width: 42px;
+                    height: 42px;
+                }
+            }
+
+            /* Contact Table styling to match the card look */
+            .contact-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 15px;
+            }
+
+            .contact-table td {
+                padding: 10px 0;
+                vertical-align: middle;
+            }
+
+            .contact-table td:first-child {
+                width: 45px;
+            }
+
+            .contact-table td:first-child a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                color: #fff;
+                text-decoration: none;
+                font-size: 16px;
+            }
+
+            .contact-table tr:nth-child(1) td:first-child a {
+                background: #3498db;
+            }
+
+            /* Map */
+            .contact-table tr:nth-child(2) td:first-child a {
+                background: #f39c12;
+            }
+
+            /* Mail */
+            .contact-table tr:nth-child(3) td:first-child a {
+                background: #25d366;
+            }
+
+            /* Web */
+            .contact-table tr:nth-child(4) td:first-child a {
+                background: #ef5350;
+            }
+
+            /* Phone */
+
+            .contact-table td:last-child {
+                padding-left: 15px;
+            }
+
+            .contact-table .contact-text {
+                color: #555;
+                font-size: 15px;
+                font-weight: 500;
+                text-decoration: none;
+                line-height: 1.4;
+            }
+        </style>
+
+        <div class="actions">
+            <a href="tel:919952573997" class="call"><i class="fa fa-phone"></i></a>
+            <a href="https://wa.me/918667573511?text=Got%20reference%20from%20your%20Virtual%20Business%20Card."
+                target="_blank" class="whatsapp"><i class="fa fa-whatsapp"></i></a>
+            <a href="https://maps.app.goo.gl/ayD6BbPquR9shN7w9" target="_blank" class="location"><i
+                    class="fa fa-map-marker"></i></a>
+            <a href="mailto:info@creaatorschoice.in" class="mail"><i class="fa fa-envelope"></i></a>
+            <a href="javascript:void(0);" onclick="openShareModal(this, 'vbc')" class="share-action"><i
+                    class="fa fa-share-alt"></i></a>
+        </div>
 
     </div>
 
@@ -63,17 +191,19 @@
 
                 <tr>
 
-                    <td><a target="_blank" href="https://goo.gl/maps/wFFGBpKRDSPMWHtX6"> <i
-                                class="fa fa-map-marker inside-icon"></i> </a></td>
+                    <td><a target="_blank" href="https://maps.app.goo.gl/ayD6BbPquR9shN7w9"> <i
+                                class="fa fa-map-marker"></i> </a></td>
 
-                    <td><a target="_blank" href="https://goo.gl/maps/wFFGBpKRDSPMWHtX6" class="contact-text"> Lerniyar Street, SH 84, Solar Pirivu,
-Erode, Tamil Nadu 638002 </a></td>
+                    <td><a target="_blank" href="https://maps.app.goo.gl/ayD6BbPquR9shN7w9" class="contact-text">
+                            Lerniyar
+                            Street, SH 84, Solar Pirivu,
+                            Erode, Tamil Nadu 638002 </a></td>
 
                 </tr>
 
                 <tr>
 
-                    <td><a href="mailto:info@creaatorschoice.in"> <i class="fa fa-envelope inside-icon"></i> </a>
+                    <td><a href="mailto:info@creaatorschoice.in"> <i class="fa fa-envelope"></i> </a>
                     </td>
 
                     <td><a href="mailto:info@creaatorschoice.in" class="contact-text"> Creativepluz.in@gmail.com </a>
@@ -83,8 +213,8 @@ Erode, Tamil Nadu 638002 </a></td>
 
                 <tr>
 
-                    <td><a target="_blank" href="https://store.creatorschoice.in/"> <i
-                                class="fa fa-globe inside-icon"></i> </a></td>
+                    <td><a target="_blank" href="https://store.creatorschoice.in/"> <i class="fa fa-globe"></i> </a>
+                    </td>
 
                     <td><a target="_blank" href="https://store.creatorschoice.in/" class="contact-text">
                             http://www.creativepluz.in/ </a></td>
@@ -93,10 +223,10 @@ Erode, Tamil Nadu 638002 </a></td>
 
                 <tr>
 
-                    <td><a target="_blank" href="tel:917620798265"> <i class="fa fa-phone inside-icon"></i> </a>
+                    <td><a target="_blank" href="tel:919952573997"> <i class="fa fa-phone"></i> </a>
                     </td>
 
-                    <td><a target="_blank" href="tel:917620798265" class="contact-text"> +91 9952573997</a></td>
+                    <td><a target="_blank" href="tel:919952573997" class="contact-text"> +91 9952573997</a></td>
 
                 </tr>
 
@@ -104,23 +234,7 @@ Erode, Tamil Nadu 638002 </a></td>
 
         </table>
 
-        <div class="share-whatsapp">
-
-            <div class="input-wrapper">
-                <label>+91</label>
-                <input id="whatsapp-input" class="input" placeholder="Enter mobile number" maxlength="10"
-                    oninput="this.value=this.value.replace(/[^0-9]/g,'');">
-
-            </div>
-
-            <a class="whatsapp-btn" href="javascript:void(0);" onclick="handleWhatsappShare(this)"> <i
-                    class="fa fa-whatsapp"></i>Share on Whatsapp </a>
-        </div>
-
-        <div class="shadow-btn"> <a href="javascript:void(0);" download="" class="addphonebook"><i
-                    class="fa fa-download shadow-button-icon"></i>Add to Phone Book</a> <a
-                onclick="openShareModal(this, 'vbc')" class="share"><i class="fa fa-share-alt"></i>Share</a>
-        </div>
+        <hr style="width: 75%; border: 0; border-top: 1px solid rgba(0,0,0,0.1); margin: 25px auto;">
 
         <ul class="firstpage share-btn">
 

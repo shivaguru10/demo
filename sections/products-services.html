@@ -1,129 +1,98 @@
 <style>
-    #products-services .product-enquiry-section {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 15px;
-        gap: 8px;
+/* Card Container */
+.serivecard {
+    width: 205px;
+    background: #fff;
+    border-radius: 6px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+/* Card Title */
+.serivecard h4 {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+    margin-top: 0; /* Ensures consistent alignment */
+}
+/* Card Image */
+.serivecard img {
+    width: 100%;
+    border-radius: 4px;
+    /* margin-top: 10px; */ 
+}
+/* Price Section */
+.price {
+    font-weight: bold;
+    font-size: 15px;
+    color: #333;
+    margin: 10px 0;
+}
+/* Enquiry Button */
+.btn {
+    display: block;
+    text-align: center;
+    background: #e91e63;  /* Pink color */
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+/* Enquiry Button Hover Effect */
+.btn:hover {
+    background: #c2185b; /* Darker pink */
+}
+/* Responsive Rule - Applies full width on mobile devices */
+@media (max-width: 600px) {
+    .serivecard {
+        width: 100%;
     }
-    #products-services .product-price {
-        font-size: 13px;
-        line-height: 1.3;
-        margin: 0;
-    }
-    #products-services .product-enquiry-btn {
-        padding: 6px 12px;
-        font-size: 12px;
-        white-space: nowrap;
-        flex-shrink: 0;
-        margin: 0;
-        display: inline-block;
-        text-align: center;
-    }
+}
 </style>
 
 <div class="page-container" id="products-services">
 
-        <h2 class="section-heading">Services</h2>
+    <h2 class="section-heading">Services</h2>
 
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; justify-items: center;">
 
-            <div class="card">
+        <div class="serivecard">
+            <h4>Website Design</h4>
+            <img onclick="openImageModal(this)" alt="Website Design &amp; Development"
+                src="images/service-cover.jpeg" style="margin-top:10px; cursor:pointer;">
+            <div class="price">₹1250*/Month</div>
+            <a href="javascript:void(0);" onclick="openEnquiryModal('Website Design &amp; Development', 'images/service-cover.jpeg', 'Mobile friendly website with eye catchy design built with latest technology that takes your business to the next level!')" class="btn">Enquiry</a>
+        </div>
 
-                <h3 class="card-title">Website Design &amp; Development</h3>
+        <div class="serivecard">
+            <h4>Graphic Design</h4>
+            <img onclick="openImageModal(this)" alt="Graphic Design"
+                src="images/service-graphic-design.jpeg" style="margin-top:10px; cursor:pointer;">
+            <div class="price">As Per Requirement</div>
+            <a href="javascript:void(0);" onclick="openEnquiryModal('Graphic Design', 'images/service-graphic-design.jpeg', 'Graphic design is the art of communication, stylizing, and problem-solving through the use of type, space and image.')" class="btn">Enquiry</a>
+        </div>
 
-                <p class="product-description"></p>
+        <div class="serivecard">
+            <h4>Logo Design</h4>
+            <img onclick="openImageModal(this)" alt="Logo Design &amp; Branding"
+                src="images/service-logo-design.jpeg" style="margin-top:10px; cursor:pointer;">
+            <div class="price">₹4000*</div>
+            <a href="javascript:void(0);" onclick="openEnquiryModal('Logo Design &amp; Branding', 'images/service-logo-design.jpeg', 'A Logo is a design symbolizing ones organization. It is a design that is used by an organization for its branding.')" class="btn">Enquiry</a>
+        </div>
 
-                <p>Mobile friendly website with eye catchy design built with latest technology that takes your business
-                    to the next level!</p>
-
-                <p></p>
-
-                <img onclick="openImageModal(this)" alt="Website Design &amp; Development"
-                    src="images/service-cover.jpeg"
-                    style="width:100%;margin-bottom: 15px;">
-
-                <div class="product-enquiry-section">
-
-                    <div class="product-price"> Price: ₹1250*/Month </div>
-
-                    <a href="javascript:void(0);" onclick="openEnquiryModal('Web Design and Development')" class="product-enquiry-btn">Enquiry</a>
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <h3 class="card-title">Graphic Design</h3>
-
-                <p class="product-description"></p>
-
-                <p>Graphic design is the art of communication, stylizing, and problem-solving through the use of type,
-                    space and image.</p>
-
-                <p></p>
-
-                <img onclick="openImageModal(this)" alt="Graphic Design"
-                    src="images/service-graphic-design.jpeg"
-                    style="width:100%;margin-bottom: 15px;">
-
-                <div class="product-enquiry-section">
-
-                    <div class="product-price"> Price: As Per Requirement </div>
-
-                    <a href="javascript:void(0);" onclick="openEnquiryModal('Graphic Design')" class="product-enquiry-btn">Enquiry</a>
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <h3 class="card-title">Logo Design &amp; Branding</h3>
-
-                <p class="product-description"></p>
-
-                <p>A Logo is a design symbolizing ones organization. It is a design that is used by an organization for
-                    its branding.</p>
-
-                <p></p>
-
-                <img onclick="openImageModal(this)" alt="Logo Design &amp; Branding"
-                    src="images/service-logo-design.jpeg"
-                    style="width:100%;margin-bottom: 15px;">
-
-                <div class="product-enquiry-section">
-
-                    <div class="product-price"> Price: ₹4000* </div>
-
-                    <a href="javascript:void(0);" onclick="openEnquiryModal('Logo Design and Branding')" class="product-enquiry-btn">Enquiry</a>
-                </div>
-
-            </div>
-
-            <div class="card">
-
-                <h3 class="card-title">Digital Marketing</h3>
-
-                <p class="product-description"></p>
-
-                <p>We provide Digital Marketing services like Search Engine Optimization (SEO), Social Media Marketing
-                    (SMM), and Email Marketing.</p>
-
-                <p></p>
-
-                <img onclick="openImageModal(this)" alt="Digital Marketing"
-                    src="images/service-digital-marketing.jpeg"
-                    style="width:100%;margin-bottom: 15px;">
-
-                <div class="product-enquiry-section">
-
-                    <div class="product-price"> Price: As Per Requirement </div>
-
-                    <a href="javascript:void(0);" onclick="openEnquiryModal('Digital Marketing')" class="product-enquiry-btn">Enquiry</a>
-                </div>
-
-            </div>
-
+        <div class="serivecard">
+            <h4>Digital Marketing</h4>
+            <img onclick="openImageModal(this)" alt="Digital Marketing"
+                src="images/service-digital-marketing.jpeg" style="margin-top:10px; cursor:pointer;">
+            <div class="price">As Per Requirement</div>
+            <a href="javascript:void(0);" onclick="openEnquiryModal('Digital Marketing', 'images/service-digital-marketing.jpeg', 'We provide Digital Marketing services like Search Engine Optimization (SEO), Social Media Marketing (SMM), and Email Marketing.')" class="btn">Enquiry</a>
         </div>
 
     </div>
+
+</div>
