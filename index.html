@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<!-- saved from url=(0036)https://card.websi.in/template1.html -->
 <html style="--theme-color: #e3010f; --theme-color-light: #e3010f70;" lang="en">
-<!-- Mirrored from virtualbusinesscard.in/template1 by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 17 Feb 2023 11:00:14 GMT --><!-- Added by HTTrack -->
+
 
 <head data-locator-hook-status-message="No valid renderers found.">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- /Added by HTTrack -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
 
 
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
 
-    <title>Virtual Business Card - Get Franchise &amp; Earn Everyday.</title>
+    <title>CreativePluz</title>
 
     <meta name="description"
         content="Unlimited Edits with your own Admin panel. Create your Card within 2 minute by easy steps. Multiple designs available on website. It&#39;s like mini website.">
@@ -38,7 +37,7 @@
 
     <meta property="og:type" content="website">
 
-    <meta property="og:description" content="Prashant Dave (Founder)">
+    <meta property="og:description" content="Uma Shankar">
 
     <script>
 
@@ -91,7 +90,7 @@
 
             const savedFb = JSON.parse(localStorage.getItem("creativepluz_vbc_feedbacks") || "[]");
             const fbList = document.querySelector('.feedback-list');
-            if(fbList && savedFb.length > 0) {
+            if (fbList && savedFb.length > 0) {
                 savedFb.forEach(fb => fbList.insertAdjacentHTML('afterbegin', fb));
             }
 
@@ -144,13 +143,13 @@
                 btn.style.cssText = "background: white; color: #e91e63; padding: 10px; border: 2px solid #e91e63; font-weight: bold; cursor: pointer; display: block; width: 100%; text-align: center; margin-bottom: 20px; border-radius: 4px; font-size: 15px;";
                 list.parentNode.insertBefore(btn, list.nextSibling);
 
-                btn.onmouseover = function() { this.style.background = '#e91e63'; this.style.color = 'white'; };
-                btn.onmouseout = function() { this.style.background = 'white'; this.style.color = '#e91e63'; };
+                btn.onmouseover = function () { this.style.background = '#e91e63'; this.style.color = 'white'; };
+                btn.onmouseout = function () { this.style.background = 'white'; this.style.color = '#e91e63'; };
             }
-            
+
             btn.style.display = 'block';
             btn.innerText = showAll ? "Show Less" : `Show More (${feedbacks.length - 3})`;
-            btn.onclick = function() {
+            btn.onclick = function () {
                 updateFeedbackVisibility(!showAll);
             };
         };
@@ -437,21 +436,21 @@
                 !e.target.hasAttribute('onclick')) {
                 openImageModal(e.target);
             }
-            
+
             // Handle dynamically loaded Star Ratings interactions
             if (e.target.tagName === 'SPAN' && e.target.hasAttribute('data-value')) {
                 const starRatingSpan = e.target.parentElement;
                 if (starRatingSpan && starRatingSpan.className.includes('gl-star-rating-stars')) {
                     const value = e.target.getAttribute('data-value');
                     starRatingSpan.className = 'gl-star-rating-stars s' + (value * 10);
-                    
+
                     const selectEl = starRatingSpan.previousElementSibling;
-                    if(selectEl && selectEl.tagName === 'SELECT') {
+                    if (selectEl && selectEl.tagName === 'SELECT') {
                         selectEl.value = value;
                     }
-                    
+
                     const textEl = starRatingSpan.nextElementSibling;
-                    if(textEl && textEl.className.includes('gl-star-rating-text')) {
+                    if (textEl && textEl.className.includes('gl-star-rating-text')) {
                         textEl.innerText = e.target.getAttribute('data-text');
                     }
                 }
@@ -460,7 +459,7 @@
 
         window.openShareModal = function () {
             const shareUrl = "https://demo-iota-gold.vercel.app/";
-            const shareText = "Check out my Virtual Business Card! ";
+            const shareText = "Check out my Link ";
 
             if (navigator.share) {
                 navigator.share({
@@ -533,14 +532,14 @@
         }
 
         window.sendFeedback = function (btn, user) {
-            if(window.event) window.event.preventDefault();
+            if (window.event) window.event.preventDefault();
 
             const form = btn.form;
             const name = form.querySelector('[name="feedbackName"]').value.trim();
             const feedbackText = form.querySelector('[name="feedback"]').value.trim();
             const ratingSelect = form.querySelector('[name="rating"]');
 
-            if(!name || !feedbackText || ratingSelect.value === "") {
+            if (!name || !feedbackText || ratingSelect.value === "") {
                 alert("Please provide your Name, a Rating, and your Feedback before submitting!");
                 return false;
             }
@@ -566,7 +565,7 @@
             </div>`;
 
             const list = document.querySelector('.feedback-list');
-            if(list) list.insertAdjacentHTML('afterbegin', newFeedbackHtml);
+            if (list) list.insertAdjacentHTML('afterbegin', newFeedbackHtml);
 
             if (typeof updateFeedbackVisibility === 'function') {
                 updateFeedbackVisibility(false);
@@ -578,8 +577,8 @@
 
             form.reset();
             const starsSpan = form.querySelector('.gl-star-rating-stars');
-            if(starsSpan) starsSpan.className = "gl-star-rating-stars s0";
-            
+            if (starsSpan) starsSpan.className = "gl-star-rating-stars s0";
+
             return false;
         }
 
@@ -622,4 +621,5 @@
         });
     </script>
 </body>
+
 </html>
