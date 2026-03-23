@@ -1,65 +1,38 @@
 <!DOCTYPE html>
 <html style="--theme-color: #e3010f; --theme-color-light: #e3010f70;" lang="en">
 
-
-<head data-locator-hook-status-message="No valid renderers found.">
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-
-
-
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0 minimal-ui">
 
     <title>CreativePluz</title>
 
     <meta name="description"
-        content="Unlimited Edits with your own Admin panel. Create your Card within 2 minute by easy steps. Multiple designs available on website. It&#39;s like mini website.">
-
+        content="Unlimited Edits with your own Admin panel. Create your Card within 2 minute by easy steps. Multiple designs available on website. It's like mini website.">
     <meta name="keywords" content="Virtual Business Card">
 
-
-
-    <!-- Favicon -->
-
-    <link rel="shortcut icon" href="https://card.websi.in/demo-templates/images/favicon.ico">
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        type="text/css">
-
-    <link href="https://card.websi.in/demo-templates/css/template1.css" rel="stylesheet">
-
-    <link href="https://card.websi.in/demo-templates/common/css/fonts.css" rel="stylesheet">
-
-    <link href="https://card.websi.in/demo-templates/common/css/star-rating.css" rel="stylesheet">
-
+    <!-- Open Graph -->
     <meta property="og:image" itemprop="image"
         content="../www.virtualbusinesscard.in/demo-templates/images/edesignguru-logo-og.jpg">
-
     <meta property="og:type" content="website">
-
     <meta property="og:description" content="Uma Shankar">
 
-    <script>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://card.websi.in/demo-templates/images/favicon.ico">
 
-        document.documentElement.style.setProperty('--theme-color', '#e3010f');
+    <!-- External CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://card.websi.in/demo-templates/css/template1.css" rel="stylesheet">
+    <link href="https://card.websi.in/demo-templates/common/css/fonts.css" rel="stylesheet">
+    <link href="https://card.websi.in/demo-templates/common/css/star-rating.css" rel="stylesheet">
 
-        document.documentElement.style.setProperty('--theme-color-light', '#e3010f70');
-
-    </script>
-
-    <style type="text/css" id="mytempCss">
-        ._8mqQwQ {
-            display: none;
-        }
-
-        ._1TWLMK.icF5zO {
-            opacity: 0.01;
-        }
-    </style>
+    <!-- Local CSS -->
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/sections.css" rel="stylesheet">
 </head>
 
-<body cz-shortcut-listen="true">
-
+<body>
+    <!-- Section Containers -->
     <div id="section-home"></div>
     <div id="section-aboutus"></div>
     <div id="section-products-services"></div>
@@ -70,238 +43,101 @@
     <div id="section-location"></div>
     <div id="section-enquiry"></div>
 
-
-    <script>
-        async function loadSections() {
-            const sections = ['home', 'aboutus', 'products-services', 'payment', 'photogallery', 'videogallery', 'feedback', 'location', 'enquiry'];
-            for (let sec of sections) {
-                try {
-                    const res = await fetch(`sections/${sec}.html?v=` + new Date().getTime());
-                    if (res.ok) {
-                        const text = await res.text();
-                        document.getElementById('section-' + sec).innerHTML = text;
-                    } else {
-                        console.error('Failed to load', sec);
-                    }
-                } catch (e) { console.error(e); }
-            }
-
-            await initViewCounter();
-
-            const savedFb = JSON.parse(localStorage.getItem("creativepluz_vbc_feedbacks") || "[]");
-            const fbList = document.querySelector('.feedback-list');
-            if (fbList && savedFb.length > 0) {
-                savedFb.forEach(fb => fbList.insertAdjacentHTML('afterbegin', fb));
-            }
-
-            if (typeof updateFeedbackVisibility === 'function') {
-                updateFeedbackVisibility();
-            }
-        }
-
-        async function initViewCounter() {
-            const displayEl = document.getElementById('viewCountDisplay');
-            const baseViews = 100;
-
-            // Check if this is a new session (to avoid counting page refreshes)
-            const isNewSession = !sessionStorage.getItem('creativepluz_vbc_session');
-            sessionStorage.setItem('creativepluz_vbc_session', 'active');
-
-            try {
-                // Use POST to increment if new session, GET to just fetch count
-                const method = isNewSession ? 'POST' : 'GET';
-                const response = await fetch('/api/views', { method });
-                const data = await response.json();
-
-                if (data.views !== undefined) {
-                    const totalViews = baseViews + parseInt(data.views);
-                    if (displayEl) displayEl.innerText = totalViews;
-                }
-            } catch (error) {
-                console.error('View counter error:', error);
-                // Fallback to localStorage if API fails
-                let viewCount = localStorage.getItem('creativepluz_vbc_views') || baseViews;
-                if (displayEl) displayEl.innerText = viewCount;
-            }
-        }
-
-        window.updateFeedbackVisibility = function (showAll = false) {
-            const list = document.querySelector('.feedback-list');
-            if (!list) return;
-
-            const feedbacks = list.querySelectorAll('.feedback-wrapper');
-            let btn = document.getElementById('feedbackToggleBtn');
-
-            if (feedbacks.length <= 3) {
-                if (btn) btn.style.display = 'none';
-                feedbacks.forEach(f => f.style.display = 'block');
-                return;
-            }
-
-            feedbacks.forEach((f, idx) => {
-                f.style.display = (idx < 3 || showAll) ? 'block' : 'none';
-            });
-
-            if (!btn) {
-                btn = document.createElement('button');
-                btn.id = 'feedbackToggleBtn';
-                btn.style.cssText = "background: white; color: #e91e63; padding: 10px; border: 2px solid #e91e63; font-weight: bold; cursor: pointer; display: block; width: 100%; text-align: center; margin-bottom: 20px; border-radius: 4px; font-size: 15px;";
-                list.parentNode.insertBefore(btn, list.nextSibling);
-
-                btn.onmouseover = function () { this.style.background = '#e91e63'; this.style.color = 'white'; };
-                btn.onmouseout = function () { this.style.background = 'white'; this.style.color = '#e91e63'; };
-            }
-
-            btn.style.display = 'block';
-            btn.innerText = showAll ? "Show Less" : `Show More (${feedbacks.length - 3})`;
-            btn.onclick = function () {
-                updateFeedbackVisibility(!showAll);
-            };
-        };
-
-        loadSections();
-    </script>
-
+    <!-- Copyright -->
     <div class="copyright">
-
-        <div class="copyright-inner"> © 2026 <a href="https://card.websi.in/index.html"
-                target="_blank">www.creativepluz.in</a> </div>
-
+        <div class="copyright-inner">
+            &copy; 2026 <a href="https://card.websi.in/index.html" target="_blank">www.creativepluz.in</a>
+        </div>
     </div>
-
-
 
     <!-- Footer Menu -->
-
     <div class="footer">
-
         <ul class="footer-menu">
-
-            <li> <a class="footer-menu-link" href="#home"> <i class="footer-menu-icon fa fa-home"></i>
-
+            <li>
+                <a class="footer-menu-link" href="#home">
+                    <i class="footer-menu-icon fa fa-home"></i>
                     <div class="footer-menu-text">HOME</div>
-
-                </a> </li>
-
-            <li> <a class="footer-menu-link" href="#aboutus"> <i class="footer-menu-icon fa fa-user"></i>
-
+                </a>
+            </li>
+            <li>
+                <a class="footer-menu-link" href="#aboutus">
+                    <i class="footer-menu-icon fa fa-user"></i>
                     <div class="footer-menu-text">ABOUT US</div>
-
-                </a> </li>
-
-            <li> <a class="footer-menu-link" href="#products-services"> <i
-                        class="footer-menu-icon fa fa-shopping-cart"></i>
-
+                </a>
+            </li>
+            <li>
+                <a class="footer-menu-link" href="#products-services">
+                    <i class="footer-menu-icon fa fa-shopping-cart"></i>
                     <div class="footer-menu-text">PRODUCTS</div>
-
-                </a> </li>
-
-            <li> <a class="footer-menu-link" href="#payment"> <i class="footer-menu-icon fa fa-inr"></i>
-
+                </a>
+            </li>
+            <li>
+                <a class="footer-menu-link" href="#payment">
+                    <i class="footer-menu-icon fa fa-inr"></i>
                     <div class="footer-menu-text">PAYMENT</div>
-
-                </a> </li>
-
-            <li> <a class="footer-menu-link" href="#photogallery"> <i class="footer-menu-icon fa fa-picture-o"></i>
-
+                </a>
+            </li>
+            <li>
+                <a class="footer-menu-link" href="#photogallery">
+                    <i class="footer-menu-icon fa fa-picture-o"></i>
                     <div class="footer-menu-text">GALLERY</div>
-
-                </a> </li>
-
-            <li> <a class="footer-menu-link" href="#videogallery"> <i class="footer-menu-icon fa fa-youtube-square"></i>
-
+                </a>
+            </li>
+            <li>
+                <a class="footer-menu-link" href="#videogallery">
+                    <i class="footer-menu-icon fa fa-youtube-square"></i>
                     <div class="footer-menu-text">VIDEOS</div>
-
-                </a> </li>
-
-            <li> <a class="footer-menu-link" href="#feedback"> <i class="footer-menu-icon fa fa-star-half-o"></i>
-
+                </a>
+            </li>
+            <li>
+                <a class="footer-menu-link" href="#feedback">
+                    <i class="footer-menu-icon fa fa-star-half-o"></i>
                     <div class="footer-menu-text">FEEDBACK</div>
-
-                </a> </li>
-
-            <li> <a class="footer-menu-link" href="#enquiry"> <i class="footer-menu-icon fa fa-comments"></i>
-
+                </a>
+            </li>
+            <li>
+                <a class="footer-menu-link" href="#enquiry">
+                    <i class="footer-menu-icon fa fa-comments"></i>
                     <div class="footer-menu-text">ENQUIRY</div>
-
-                </a> </li>
-
+                </a>
+            </li>
         </ul>
-
     </div>
 
-    <!-- The image Modal Popup-->
-
-    <div id="imageModal" class="modal"> <span class="close" id="imageModalClose">×</span> <img
-            class="modal-content fadeIn" id="img01" alt="">
-
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close" id="imageModalClose">&times;</span>
+        <img class="modal-content fadeIn" id="img01" alt="">
         <div id="caption"></div>
-
     </div>
 
-    <!-- The share Modal Popup -->
-
+    <!-- Share Modal -->
     <div id="shareModal" class="modal share-modal">
-
         <div class="share-form fadeInUpBig">
-
             <div class="share-form-header">
-
                 <h3 class="share-form-header-text">Share Card</h3>
-
-                <span class="close" id="shareModalClose">×</span>
+                <span class="close" id="shareModalClose">&times;</span>
             </div>
-
             <div class="share-form-buttons-container">
-
-                <div class="share-btn-heading"> <img src="https://card.websi.in/demo-templates/images/tild-arrow.svg"
-                        class="share-btn-arrow" alt="">
-
+                <div class="share-btn-heading">
+                    <img src="https://card.websi.in/demo-templates/images/tild-arrow.svg" class="share-btn-arrow" alt="">
                     <div class="share-btn-heading-text">Share my Virtual Business Card in your network.</div>
-
                 </div>
-
                 <ul class="share-btn">
-
-                    <li> <i class="share-btn-whatsapp fa fa-whatsapp"></i> </li>
-
-                    <li> <i class="share-btn-sms fa fa-comments"></i> </li>
-
-                    <li> <i class="share-btn-facebook fa fa-facebook-f"></i> </li>
-
-                    <li> <i class="share-btn-twitter fa fa-twitter"></i> </li>
-
-                    <li> <i class="share-btn-skype fa fa-skype"></i> </li>
-
-                    <li> <i class="share-btn-pinterest fa fa-pinterest"></i> </li>
-
-                    <li> <i class="share-btn-linkedin fa fa-linkedin"></i> </li>
-
-                    <li> <i class="share-btn-mail fa fa-envelope"></i> </li>
-
+                    <li><i class="share-btn-whatsapp fa fa-whatsapp"></i></li>
+                    <li><i class="share-btn-sms fa fa-comments"></i></li>
+                    <li><i class="share-btn-facebook fa fa-facebook-f"></i></li>
+                    <li><i class="share-btn-twitter fa fa-twitter"></i></li>
+                    <li><i class="share-btn-skype fa fa-skype"></i></li>
+                    <li><i class="share-btn-pinterest fa fa-pinterest"></i></li>
+                    <li><i class="share-btn-linkedin fa fa-linkedin"></i></li>
+                    <li><i class="share-btn-mail fa fa-envelope"></i></li>
                 </ul>
-
             </div>
-
         </div>
-
     </div>
 
-    <script src="https://card.websi.in/demo-templates/images/star-rating.js.download"></script>
-
-    <script src="https://card.websi.in/demo-templates/images/script.js.download"></script>
-
-    <script defer="" src="https://card.websi.in/demo-templates/images/v8c78df7c7c0f484497ecbca7046644da1771523124516"
-        integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg=="
-        data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;0d60c73250a447d0bef97d63d4bdd62d&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}"
-        crossorigin="anonymous"></script>
-
-
-
-
-
-
-    <!-- Enquiry Modal Popup -->
+    <!-- Enquiry Modal -->
     <div id="enquiryModal" class="modal share-modal">
         <div class="share-form fadeInUpBig"
             style="width: 90%; max-width: 500px; padding: 20px; border-radius: 10px; position: relative; max-height: 90vh; overflow-y: auto;">
@@ -317,7 +153,7 @@
             <div id="enqServiceDisplay"
                 style="display: none; margin-bottom: 20px; text-align: left; background: #f9f9f9; padding: 15px; border-radius: 8px;">
                 <h3 id="enqServiceTitle" style="font-size: 18px; margin-bottom: 10px; color: #333; margin-top: 0;"></h3>
-                <img id="enqServiceImage" src="" style="width: 100%; border-radius: 6px; margin-bottom: 10px;" />
+                <img id="enqServiceImage" src="" style="width: 100%; border-radius: 6px; margin-bottom: 10px;">
                 <p id="enqServiceDetails" style="font-size: 14px; color: #555; margin-bottom: 0; line-height: 1.5;"></p>
             </div>
 
@@ -352,279 +188,14 @@
         </div>
     </div>
 
-    <style>
-        /* Ensure modal works smoothly on both mobile and desktop */
-        #imageModal {
-            display: none;
-            /* Hidden by default */
-            position: fixed;
-            /* Stay in place */
-            z-index: 99999;
-            /* Sit on top */
-            padding-top: 40px;
-            /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%;
-            /* Full width */
-            height: 100%;
-            /* Full height */
-            overflow: auto;
-            /* Enable scroll if needed */
-            background-color: rgba(0, 0, 0, 0.9);
-            /* Black w/ opacity */
-        }
+    <!-- External Scripts -->
+    <script src="https://card.websi.in/demo-templates/images/star-rating.js.download"></script>
+    <script src="https://card.websi.in/demo-templates/images/script.js.download"></script>
 
-        #imageModal .modal-content {
-            margin: auto;
-            display: block;
-            max-width: 90%;
-            max-height: 80vh;
-            object-fit: contain;
-        }
-
-        #imageModal #caption {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-            text-align: center;
-            color: #ccc;
-            padding: 10px 0;
-            height: 150px;
-            font-size: 18px;
-        }
-
-        #imageModal .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-            z-index: 100000;
-            /* Force to be above image */
-            text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8);
-            /* Ensures visibility over white images */
-        }
-
-        #imageModal .close:hover,
-        #imageModal .close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        @media only screen and (max-width: 700px) {
-            #imageModal .modal-content {
-                width: 100%;
-            }
-        }
-    </style>
-    <script>
-        window.openImageModal = function (imgElement) {
-            const modal = document.getElementById("imageModal");
-            const modalImg = document.getElementById("img01");
-            const captionText = document.getElementById("caption");
-
-            modal.style.display = "block";
-            modalImg.src = imgElement.src;
-            captionText.innerHTML = imgElement.alt || "";
-        }
-
-        // Global listener for ANY image clicked that isn't handled already, and Star Ratings
-        document.addEventListener('click', function (e) {
-            if (e.target.tagName === 'IMG' &&
-                !e.target.closest('#imageModal') &&
-                !e.target.hasAttribute('onclick')) {
-                openImageModal(e.target);
-            }
-
-            // Handle dynamically loaded Star Ratings interactions
-            if (e.target.tagName === 'SPAN' && e.target.hasAttribute('data-value')) {
-                const starRatingSpan = e.target.parentElement;
-                if (starRatingSpan && starRatingSpan.className.includes('gl-star-rating-stars')) {
-                    const value = e.target.getAttribute('data-value');
-                    starRatingSpan.className = 'gl-star-rating-stars s' + (value * 10);
-
-                    const selectEl = starRatingSpan.previousElementSibling;
-                    if (selectEl && selectEl.tagName === 'SELECT') {
-                        selectEl.value = value;
-                    }
-
-                    const textEl = starRatingSpan.nextElementSibling;
-                    if (textEl && textEl.className.includes('gl-star-rating-text')) {
-                        textEl.innerText = e.target.getAttribute('data-text');
-                    }
-                }
-            }
-        });
-
-        window.openShareModal = function () {
-            const shareUrl = "https://demo-iota-gold.vercel.app/";
-            const shareText = "Check out my Link ";
-
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Virtual Business Card',
-                    text: shareText,
-                    url: shareUrl
-                }).catch(console.error);
-            } else {
-                const modal = document.getElementById("shareModal");
-                const shareList = document.querySelector('#shareModal .share-btn');
-
-                if (shareList && !shareList.dataset.initialized) {
-                    shareList.innerHTML = `
-                    <li><a href="https://wa.me/?text=${encodeURIComponent(shareText + shareUrl)}" target="_blank"><i class="share-btn-whatsapp fa fa-whatsapp"></i></a></li>
-                    <li><a href="sms:?body=${encodeURIComponent(shareText + shareUrl)}"><i class="share-btn-sms fa fa-comments"></i></a></li>
-                    <li><a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}" target="_blank"><i class="share-btn-facebook fa fa-facebook-f"></i></a></li>
-                    <li><a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent('Check out my card')}" target="_blank"><i class="share-btn-twitter fa fa-twitter"></i></a></li>
-                    <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}" target="_blank"><i class="share-btn-linkedin fa fa-linkedin"></i></a></li>
-                    <li><a href="mailto:?subject=Virtual%20Business%20Card&body=${encodeURIComponent(shareText + shareUrl)}"><i class="share-btn-mail fa fa-envelope"></i></a></li>
-                `;
-                    shareList.dataset.initialized = 'true';
-                }
-                modal.style.display = "block";
-            }
-        }
-
-        window.openEnquiryModal = function (productName, imgSrc, description) {
-            const modal = document.getElementById("enquiryModal");
-            const msgField = document.getElementById("enquiryProductMessage");
-            const displaySection = document.getElementById("enqServiceDisplay");
-            const titleEl = document.getElementById("enqServiceTitle");
-            const imgEl = document.getElementById("enqServiceImage");
-            const descEl = document.getElementById("enqServiceDetails");
-
-            modal.style.display = "flex";
-
-            if (productName && imgSrc && description) {
-                displaySection.style.display = "block";
-                titleEl.innerText = productName;
-                imgEl.src = imgSrc;
-                descEl.innerText = description;
-            } else {
-                displaySection.style.display = "none";
-            }
-
-            if (productName) {
-                msgField.value = "Hi, I am interested in your service: " + productName + ". Please provide more details.";
-            } else {
-                msgField.value = "";
-            }
-        }
-
-        window.sendWhatsAppEnquiry = function (button) {
-            const form = button.form;
-            const name = form.querySelector('[name="enquiryName"]').value;
-            const phone = form.querySelector('[name="phoneNumber"]').value;
-            const email = form.querySelector('[name="email"]').value;
-            const city = form.querySelector('[name="city"]').value;
-            const quantity = form.querySelector('[name="quantity"]').value;
-            const message = form.querySelector('[name="message"]').value;
-
-            const waNumber = "918667573511";
-            const text = `Hello *Creativepluz*,\n\nI am reaching out via your *Creativepluz Business Card* website with a new enquiry.\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Email:* ${email}\n*City:* ${city}\n*Quantity:* ${quantity}\n*Message:* ${message}`;
-
-            window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`, '_blank');
-
-            const modal = document.getElementById("enquiryModal");
-            if (modal) modal.style.display = "none";
-            form.reset();
-        }
-
-        window.sendFeedback = function (btn, user) {
-            if (window.event) window.event.preventDefault();
-
-            const form = btn.form;
-            const name = form.querySelector('[name="feedbackName"]').value.trim();
-            const feedbackText = form.querySelector('[name="feedback"]').value.trim();
-            const ratingSelect = form.querySelector('[name="rating"]');
-
-            if (!name || !feedbackText || ratingSelect.value === "") {
-                alert("Please provide your Name, a Rating, and your Feedback before submitting!");
-                return false;
-            }
-
-            const rating = parseInt(ratingSelect.value);
-            const ratingClass = "s" + (rating * 10);
-            const dateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-
-            const newFeedbackHtml = `
-            <div class="feedback-wrapper" style="animation: fadeIn 0.4s ease-out;"> 
-                <span class="feedback-name-wrapper"><span class="feedback-name">${name}</span> on ${dateStr} </span>
-                <div>
-                   <span class="gl-star-rating-stars ${ratingClass}">
-                       <span data-value="1" data-text="Terrible"></span>
-                       <span data-value="2" data-text="Poor"></span>
-                       <span data-value="3" data-text="Average"></span>
-                       <span data-value="4" data-text="Very Good"></span>
-                       <span data-value="5" data-text="Excellent"></span>
-                   </span>
-                </div>
-                <div>${feedbackText}</div>
-                <hr>
-            </div>`;
-
-            const list = document.querySelector('.feedback-list');
-            if (list) list.insertAdjacentHTML('afterbegin', newFeedbackHtml);
-
-            if (typeof updateFeedbackVisibility === 'function') {
-                updateFeedbackVisibility(false);
-            }
-
-            const savedFb = JSON.parse(localStorage.getItem("creativepluz_vbc_feedbacks") || "[]");
-            savedFb.push(newFeedbackHtml);
-            localStorage.setItem("creativepluz_vbc_feedbacks", JSON.stringify(savedFb));
-
-            form.reset();
-            const starsSpan = form.querySelector('.gl-star-rating-stars');
-            if (starsSpan) starsSpan.className = "gl-star-rating-stars s0";
-
-            return false;
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const modal = document.getElementById("imageModal");
-            const span = document.getElementById("imageModalClose");
-
-            if (span) {
-                span.onclick = function () {
-                    modal.style.display = "none";
-                }
-            }
-
-            modal.onclick = function (e) {
-                if (e.target !== document.getElementById("img01")) {
-                    modal.style.display = "none";
-                }
-            }
-
-            const shareModal = document.getElementById("shareModal");
-            const shareModalClose = document.getElementById("shareModalClose");
-            if (shareModalClose) {
-                shareModalClose.onclick = function () {
-                    shareModal.style.display = "none";
-                }
-            }
-
-            const enqModal = document.getElementById("enquiryModal");
-            const enqSpan = document.getElementById("enquiryModalClose");
-            if (enqSpan) {
-                enqSpan.onclick = function () {
-                    enqModal.style.display = "none";
-                }
-            }
-            enqModal.onclick = function (e) {
-                if (e.target === enqModal) {
-                    enqModal.style.display = "none";
-                }
-            }
-        });
-    </script>
+    <!-- Local Scripts -->
+    <script src="js/feedback.js"></script>
+    <script src="js/modals.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>
