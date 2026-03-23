@@ -86,7 +86,7 @@
                 } catch (e) { console.error(e); }
             }
 
-            initViewCounter();
+            await initViewCounter();
 
             const savedFb = JSON.parse(localStorage.getItem("creativepluz_vbc_feedbacks") || "[]");
             const fbList = document.querySelector('.feedback-list');
@@ -99,25 +99,30 @@
             }
         }
 
-        function initViewCounter() {
+        async function initViewCounter() {
+            const displayEl = document.getElementById('viewCountDisplay');
             const baseViews = 100;
-            let viewCount = localStorage.getItem('creativepluz_vbc_views');
 
-            if (!viewCount) {
-                viewCount = baseViews + 1;
-                localStorage.setItem('creativepluz_vbc_views', viewCount);
-            } else {
-                viewCount = parseInt(viewCount);
-                if (!sessionStorage.getItem('creativepluz_vbc_session')) {
-                    viewCount += 1;
-                    localStorage.setItem('creativepluz_vbc_views', viewCount);
-                }
-            }
-
+            // Check if this is a new session (to avoid counting page refreshes)
+            const isNewSession = !sessionStorage.getItem('creativepluz_vbc_session');
             sessionStorage.setItem('creativepluz_vbc_session', 'active');
 
-            const displayEl = document.getElementById('viewCountDisplay');
-            if (displayEl) displayEl.innerText = viewCount;
+            try {
+                // Use POST to increment if new session, GET to just fetch count
+                const method = isNewSession ? 'POST' : 'GET';
+                const response = await fetch('/api/views', { method });
+                const data = await response.json();
+
+                if (data.views !== undefined) {
+                    const totalViews = baseViews + parseInt(data.views);
+                    if (displayEl) displayEl.innerText = totalViews;
+                }
+            } catch (error) {
+                console.error('View counter error:', error);
+                // Fallback to localStorage if API fails
+                let viewCount = localStorage.getItem('creativepluz_vbc_views') || baseViews;
+                if (displayEl) displayEl.innerText = viewCount;
+            }
         }
 
         window.updateFeedbackVisibility = function (showAll = false) {
