@@ -34,7 +34,7 @@
 
         </div>
 
-        <form class="feedback-form card" novalidate="">
+        <form class="feedback-form card" onsubmit="event.preventDefault(); return false;">
 
             <div class="feedback-form-heading">Give Feedback</div>
 
@@ -63,7 +63,7 @@
 
             <textarea name="feedback" id="feedback" placeholder="Enter your feedback"></textarea>
 
-            <input type="submit" value="Give Feedback" onclick="sendFeedback(this, 'prashant-dave')">
+            <button type="button" onclick="sendFeedback(this, 'prashant-dave')" style="background: #e91e63; color: white; padding: 10px 20px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px;">Give Feedback</button>
 
         </form>
 

@@ -12,32 +12,6 @@
             style="margin: 0; padding: 6px 12px; background-color: #e91e63; color: white; border-radius: 6px; font-size: 13px; font-weight: bold; border: none; float: none; display: inline-block;">
             <i class="fa fa-eye"></i> Views: <span id="viewCountDisplay">100</span>
         </div>
-        <script>
-            // Simulated Unique View Counter (Static Site Fallback)
-            document.addEventListener("DOMContentLoaded", function() {
-                const baseViews = 100;
-                let viewCount = localStorage.getItem('creativepluz_vbc_views');
-
-                if (!viewCount) {
-                    // New user -> Set to base + 1
-                    viewCount = baseViews + 1;
-                    localStorage.setItem('creativepluz_vbc_views', viewCount);
-                } else {
-                    viewCount = parseInt(viewCount);
-                    // Existing user -> Increment +1 only if it's a new session/entering the website today
-                    if (!sessionStorage.getItem('creativepluz_vbc_session')) {
-                        viewCount += 1;
-                        localStorage.setItem('creativepluz_vbc_views', viewCount);
-                    }
-                }
-
-                // Mark current session as active so refreshing doesn't keep adding views
-                sessionStorage.setItem('creativepluz_vbc_session', 'active');
-                
-                const displayEl = document.getElementById('viewCountDisplay');
-                if(displayEl) displayEl.innerText = viewCount;
-            });
-        </script>
     </div>
     <div class="clearfix"></div>
 
@@ -176,7 +150,7 @@
                 target="_blank" class="whatsapp"><i class="fa fa-whatsapp"></i></a>
             <a href="https://maps.app.goo.gl/ayD6BbPquR9shN7w9" target="_blank" class="location"><i
                     class="fa fa-map-marker"></i></a>
-            <a href="mailto:info@creaatorschoice.in" class="mail"><i class="fa fa-envelope"></i></a>
+            <a href="mailto:Creativepluz.in@gmail.com" class="mail"><i class="fa fa-envelope"></i></a>
             <a href="javascript:void(0);" onclick="openShareModal(this, 'vbc')" class="share-action"><i
                     class="fa fa-share-alt"></i></a>
         </div>
@@ -203,10 +177,10 @@
 
                 <tr>
 
-                    <td><a href="mailto:info@creaatorschoice.in"> <i class="fa fa-envelope"></i> </a>
+                    <td><a href="mailto:Creativepluz.in@gmail.com"> <i class="fa fa-envelope"></i> </a>
                     </td>
 
-                    <td><a href="mailto:info@creaatorschoice.in" class="contact-text"> Creativepluz.in@gmail.com </a>
+                    <td><a href="mailto:Creativepluz.in@gmail.com" class="contact-text"> Creativepluz.in@gmail.com </a>
                     </td>
 
                 </tr>
