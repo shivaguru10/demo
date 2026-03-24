@@ -105,7 +105,7 @@ window.sendWhatsAppEnquiry = function (button) {
     const quantity = form.querySelector('[name="quantity"]').value;
     const message = form.querySelector('[name="message"]').value;
 
-    const waNumber = "918667573511";
+    const waNumber = "919788755667";
     const text = `Hello *Creativepluz*,\n\nI am reaching out via your *Creativepluz Business Card* website with a new enquiry.\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Email:* ${email}\n*City:* ${city}\n*Quantity:* ${quantity}\n*Message:* ${message}`;
 
     window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`, '_blank');
