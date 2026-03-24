@@ -42,13 +42,14 @@ window.openShareModal = function () {
 };
 
 // Enquiry Modal
-window.openEnquiryModal = function (productName, imgSrc, description) {
+window.openEnquiryModal = function (productName, imgSrc, description, origPrice, discPrice) {
     const modal = document.getElementById("enquiryModal");
     const msgField = document.getElementById("enquiryProductMessage");
     const displaySection = document.getElementById("enqServiceDisplay");
     const titleEl = document.getElementById("enqServiceTitle");
     const imgEl = document.getElementById("enqServiceImage");
     const descEl = document.getElementById("enqServiceDetails");
+    const pricingEl = document.getElementById("enqPricingSection");
 
     modal.style.display = "flex";
 
@@ -59,6 +60,32 @@ window.openEnquiryModal = function (productName, imgSrc, description) {
         descEl.innerText = description;
     } else {
         displaySection.style.display = "none";
+    }
+
+    // Render pricing dynamically
+    if (pricingEl) {
+        if (origPrice && discPrice && typeof origPrice === 'number') {
+            const discount = Math.round(((origPrice - discPrice) / origPrice) * 100);
+            pricingEl.style.display = "flex";
+            pricingEl.innerHTML = `
+                <span style="font-size:14px;color:#999;text-decoration:line-through;">&#8377;${origPrice}</span>
+                <span style="font-size:18px;font-weight:700;color:#388e3c;">&#8377;${discPrice}<span style="font-size:12px;font-weight:600;">/month</span></span>
+                <span style="font-size:11px;font-weight:700;color:#388e3c;background:#e8f5e9;padding:2px 7px;border-radius:4px;letter-spacing:0.3px;">${discount}% OFF</span>
+            `;
+        } else if (typeof origPrice === 'string' && origPrice.trim() !== '') {
+            pricingEl.style.display = "flex";
+            pricingEl.innerHTML = `
+                <span style="font-size:13px;font-weight:600;color:#777;font-style:italic;">&#128178; ${origPrice}</span>
+            `;
+        } else if (discPrice && typeof discPrice === 'number') {
+            pricingEl.style.display = "flex";
+            pricingEl.innerHTML = `
+                <span style="font-size:18px;font-weight:700;color:#388e3c;">&#8377;${discPrice}<span style="font-size:12px;font-weight:600;">/month</span></span>
+            `;
+        } else {
+            pricingEl.style.display = "none";
+            pricingEl.innerHTML = "";
+        }
     }
 
     if (productName) {
