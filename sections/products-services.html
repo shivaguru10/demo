@@ -1,142 +1,210 @@
 <style>
-    /* Card Container */
+  /* Card Container */
+  .serivecard {
+    width: 205px;
+    background: #fff;
+    border-radius: 6px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+  }
+
+  /* Card Title */
+  .serivecard h4 {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+    margin-top: 0;
+    /* Ensures consistent alignment */
+  }
+
+  /* Card Image */
+  .serivecard img {
+    width: 100%;
+    border-radius: 4px;
+    /* margin-top: 10px; */
+  }
+
+  /* Price Section */
+  .price {
+    font-weight: bold;
+    font-size: 15px;
+    color: #333;
+    margin: 10px 0;
+  }
+
+  /* Enquiry Button */
+  .btn {
+    display: block;
+    text-align: center;
+    background: #e3010f;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-sizing: border-box;
+  }
+
+  /* Enquiry Button Hover Effect */
+  .btn:hover {
+    background: #b5000c;
+  }
+
+  /* Responsive Rule - Applies full width on mobile devices */
+  @media (max-width: 600px) {
     .serivecard {
-        width: 205px;
-        background: #fff;
-        border-radius: 6px;
-        padding: 15px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        box-sizing: border-box;
+      width: 100%;
     }
-
-    /* Card Title */
-    .serivecard h4 {
-        font-size: 16px;
-        color: #555;
-        margin-bottom: 10px;
-        margin-top: 0;
-        /* Ensures consistent alignment */
-    }
-
-    /* Card Image */
-    .serivecard img {
-        width: 100%;
-        border-radius: 4px;
-        /* margin-top: 10px; */
-    }
-
-    /* Price Section */
-    .price {
-        font-weight: bold;
-        font-size: 15px;
-        color: #333;
-        margin: 10px 0;
-    }
-
-    /* Enquiry Button */
-    .btn {
-        display: block;
-        text-align: center;
-        background: #E3010F;
-        color: #fff;
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        text-decoration: none;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.3s;
-        box-sizing: border-box;
-    }
-
-    /* Enquiry Button Hover Effect */
-    .btn:hover {
-        background: #b5000c;
-    }
-
-    /* Responsive Rule - Applies full width on mobile devices */
-    @media (max-width: 600px) {
-        .serivecard {
-            width: 100%;
-        }
-    }
+  }
 </style>
 
 <div class="page-container" id="products-services">
+  <h2 class="section-heading">Services</h2>
 
-    <h2 class="section-heading">Services</h2>
-
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; justify-items: center;">
-
-        <div class="serivecard">
-            <h4>கணபதி ஹோமம்
-ஆயுஷ் ஹோமம்
-நவக்கிர தோஷம்
-குடும்ப தோஷம்
-செவ்வாய் தோஷம்</h4>
-            <img onclick="openImageModal(this)" alt="கணபதி ஹோமம்" src="images/download.jpeg"
-                style="margin-top:10px; cursor:pointer;">
-            <div class="price">₹1250*/Month</div>
-            <a href="javascript:void(0);"
-                onclick="openEnquiryModal('கணபதி ஹோமம்', 'images/download.jpeg', 'Mobile friendly website with eye catchy design built with latest technology that takes your business to the next level!', 1600, 1250)"
-                class="btn">Enquiry</a>
-        </div>
-
-        <div class="serivecard">
-            <h4>ராகு,கேது தோஷம்
-கால ஸர்ப்ப தோஷம் 
-சனி தோஷம்
-புத்திர தோஷம் பரிகாரம்
-கந்தர்வ ராஜ ஹோமம் </h4>
-            <img onclick="openImageModal(this)" alt="ராகு,கேது தோஷம்" src="images/download (1).jpeg"
-                style="margin-top:10px; cursor:pointer;">
-            <div class="price">As Per Requirement</div>
-            <a href="javascript:void(0);"
-                onclick="openEnquiryModal('ராகு,கேது தோஷம்', 'images/download (1).jpeg', 'Graphic design is the art of communication, stylizing, and problem-solving through the use of type, space and image.', 'As Per Requirement', null)"
-                class="btn">Enquiry</a>
-        </div>
-
-        <div class="serivecard">
-            <h4>தார தோஷம்
-தில ஹோமம்
-ஸர்ப்ப ஸாந்தி
-திருமணத் தடை தோஷம்
-பூர்வீக ஸாப தோஷம்</h4>
-            <img onclick="openImageModal(this)" alt="தார தோஷம்" src="images/download (2).jpeg"
-                style="margin-top:10px; cursor:pointer;">
-            <div class="price">₹3000*</div>
-            <a href="javascript:void(0);"
-                onclick="openEnquiryModal('தார தோஷம்', 'images/download (2).jpeg', 'A Logo is a design symbolizing ones organization. It is a design that is used by an organization for its branding.', 3000, 2000)"
-                class="btn">Enquiry</a>
-        </div>
-         <div class="serivecard">
-            <h4>மாங்கல்ய தோஷம்
-மஹா ஸூதர்ஸன ஹோமம்
-பித்ரு தோஷம்
-குழந்தை தாரை வார்த்து பரிகாரம்
-ஸ்திரி ஸாபம்</h4>
-            <img onclick="openImageModal(this)" alt="மாங்கல்ய தோஷம்" src="images/images.jpeg"
-                style="margin-top:10px; cursor:pointer;">
-            <div class="price">₹4000*</div>
-            <a href="javascript:void(0);"
-                onclick="openEnquiryModal('மாங்கல்ய தோஷம்', 'images/images.jpeg', 'A Logo is a design symbolizing ones organization. It is a design that is used by an organization for its branding.', 5000, 4000)"
-                class="btn">Enquiry</a>
-        </div>
-
-        <div class="serivecard">
-            <h4>பார்வதிகலா ஹோமம் 
-மாந்தி தோஷம்
-கோ பூஜை
-கஜ பூஜை
-அஷ்வ பூஜை</h4>
-            <img onclick="openImageModal(this)" alt="கோ பூஜை" src="images/download (3).jpeg"
-                style="margin-top:10px; cursor:pointer;">
-            <div class="price">As Per Requirement</div>
-            <a href="javascript:void(0);"
-                onclick="openEnquiryModal('கோ பூஜை', 'images/download (3).jpeg', 'We provide Digital Marketing services like Search Engine Optimization (SEO), Social Media Marketing (SMM), and Email Marketing.', 'As Per Requirement', null)"
-                class="btn">Enquiry</a>
-        </div>
-
+  <div
+    style="
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      justify-items: center;
+    "
+  >
+    <div class="serivecard">
+      <h4>
+        கணபதி ஹோமம்,ஆயுஷ் ஹோமம்,நவக்கிர தோஷம்,குடும்ப தோஷம்,கந்தர்வ ராஜ ஹோமம்
+      </h4>
+      <img
+        onclick="openImageModal(this)"
+        alt="கணபதி ஹோமம்"
+        src="images/download.jpeg"
+        style="margin-top: 10px; cursor: pointer"
+      />
+      <div class="price">As Per Requirement</div>
+      <a
+        href="javascript:void(0);"
+        onclick="
+          openEnquiryModal(
+            'கணபதி ஹோமம்',
+            'images/download.jpeg',
+            'ஆயுஷ் ஹோமம்,நவக்கிர தோஷம்,குடும்ப தோஷம்,கந்தர்வ ராஜ ஹோமம்',
+            'As Per Requirement',
+            null,
+          )
+        "
+        class="btn"
+        >Enquiry</a
+      >
     </div>
 
+    <div class="serivecard">
+      <h4>
+        ராகு,கேது தோஷம்,கால ஸர்ப்ப தோஷம்,சனி தோஷம்,புத்திர தோஷம் பரிகாரம்,
+        செவ்வாய் தோஷம்
+      </h4>
+      <img
+        onclick="openImageModal(this)"
+        alt="ராகு,கேது தோஷம்"
+        src="images/download (1).jpeg"
+        style="margin-top: 10px; cursor: pointer"
+      />
+      <div class="price">As Per Requirement</div>
+      <a
+        href="javascript:void(0);"
+        onclick="
+          openEnquiryModal(
+            'ராகு,கேது தோஷம்',
+            'images/download (1).jpeg',
+            'கால ஸர்ப்ப தோஷம்,சனி தோஷம்,புத்திர தோஷம் பரிகாரம், செவ்வாய் தோஷம்',
+            'As Per Requirement',
+            null,
+          )
+        "
+        class="btn"
+        >Enquiry</a
+      >
+    </div>
+
+    <div class="serivecard">
+      <h4>
+        தார தோஷம்,தில ஹோமம்,ஸர்ப்ப ஸாந்தி,திருமணத் தடை தோஷம்,பூர்வீக ஸாப தோஷம்
+      </h4>
+      <img
+        onclick="openImageModal(this)"
+        alt="தார தோஷம்"
+        src="images/download (2).jpeg"
+        style="margin-top: 10px; cursor: pointer"
+      />
+      <div class="price">As Per Requirement </div>
+      <a
+        href="javascript:void(0);"
+        onclick="
+          openEnquiryModal(
+            'தார தோஷம்',
+            'images/download (2).jpeg',
+            'தில ஹோமம்,ஸர்ப்ப ஸாந்தி,திருமணத் தடை தோஷம்,பூர்வீக ஸாப தோஷம்',
+            'As Per Requirement',
+            null,
+          )
+        "
+        class="btn"
+        >Enquiry</a
+      >
+    </div>
+    <div class="serivecard">
+      <h4>
+        மாங்கல்ய தோஷம்,மஹா ஸூதர்ஸன ஹோமம்,பித்ரு தோஷம்,ஸ்திரி ஸாபம்,அஷ்வ பூஜை
+      </h4>
+      <img
+        onclick="openImageModal(this)"
+        alt="மாங்கல்ய தோஷம்"
+        src="images/images.jpeg"
+        style="margin-top: 10px; cursor: pointer"
+      />
+      <div class="price">As Per Requirement </div>
+      <a
+        href="javascript:void(0);"
+        onclick="
+          openEnquiryModal(
+            'மாங்கல்ய தோஷம்',
+            'images/images.jpeg',
+            'மஹா ஸூதர்ஸன ஹோமம்,பித்ரு தோஷம்,ஸ்திரி ஸாபம்,அஷ்வ பூஜை',
+            'As Per Requirement',
+            null,
+          )
+        "
+        class="btn"
+        >Enquiry</a
+      >
+    </div>
+
+    <div class="serivecard">
+      <h4>பார்வதிகலா ஹோமம்,மாந்தி தோஷம்,கோ பூஜை,கஜ பூஜை,குழந்தை தாரை வார்த்து
+        பரிகாரம் </h4>
+      <img
+        onclick="openImageModal(this)"
+        alt="கோ பூஜை"
+        src="images/download (3).jpeg"
+        style="margin-top: 10px; cursor: pointer"
+      />
+      <div class="price">As Per Requirement</div>
+      <a
+        href="javascript:void(0);"
+        onclick="
+          openEnquiryModal(
+            'கோ பூஜை',
+            'images/download (3).jpeg',
+            'மாந்தி தோஷம்,கோ பூஜை,கஜ பூஜை,குழந்தை தாரை வார்த்து பரிகாரம்',
+            'As Per Requirement',
+            null,
+          )
+        "
+        class="btn"
+        >Enquiry</a
+      >
+    </div>
+  </div>
 </div>
