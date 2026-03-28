@@ -17,3 +17,101 @@
     padding: 10px 0;
     vertical-align: middle;
 }
+
+/* Payment QR Section */
+.payment-qr-section {
+    text-align: center;
+    padding: 20px 15px;
+}
+
+.qr-section-title {
+    color: var(--theme-color);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.qr-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: var(--theme-color);
+    border-radius: 2px;
+}
+
+.qr-card {
+    background: linear-gradient(145deg, #ffffff, #f5f5f5);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 2px solid var(--theme-color-light);
+}
+
+.qr-card-header {
+    background: var(--theme-color);
+    color: #fff;
+    padding: 12px 16px;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-card-header.gpay-header {
+    background: #fff;
+    border-bottom: 2px solid #f0f0f0;
+    gap: 6px;
+}
+
+.gpay-logo {
+    font-family: 'Product Sans', 'Google Sans', Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+}
+
+.gpay-text {
+    font-family: 'Product Sans', 'Google Sans', Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #5f6368;
+}
+
+.qr-card-header i {
+    color: #fff !important;
+}
+
+.qr-card-body {
+    padding: 12px 20px 20px;
+    background: #fff;
+}
+
+.qr-card-body .qr-image {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    border-radius: 12px;
+    border: 3px solid var(--theme-color-light);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.qr-card-footer {
+    background: #f9f9f9;
+    padding: 12px 16px;
+    border-top: 1px solid #eee;
+}
+
+.qr-card-footer p {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+}
